@@ -1,7 +1,15 @@
+import { useEffect, useState } from "react";
+import { getAllQuestions } from "./data/server";
+import { AdminDashBoard } from "./components/AdminDashBoard";
+import { UserDashBoard } from "./components/user/UserDashBoard";
+
 export default function App() {
+  // const data=getAllQuestions();
+ 
   return (
-    <h1 className="text-3xl bg-red-100 font-bold underline">
-      Hello world!
-    </h1>
+    <div className="">
+      <AdminDashBoard/>
+      <UserDashBoard/>
+    </div>
   )
 }
