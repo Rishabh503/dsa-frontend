@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { registerUser } from '../../data/server.js'
 import { toast } from 'react-toastify';
+import { NavLink } from 'react-router';
 
 export const Register = () => {
 
@@ -73,9 +74,13 @@ export const Register = () => {
                                 <label className='text-lg pl-1 '>Year</label>
                                 <input className='w-[80%] rounded-md shadow-sm border pl-2' placeholder='Year' value={year} required type="text" onChange={(e)=>setYear(e.target.value)} />
                             </div>
+                            <div className='flex justify-between items-center'>
                             <button className='px-5 py-2 w-[30%] items-center rounded-lg text-white text-lg border bg-blue-400 text white'>
                                     Submit
                                 </button>
+                              <NavLink to='/login' className='pr-20 text-blue-500'>Login..</NavLink>
+                            </div>
+
                         </form>
                     </div>
            </div>

@@ -5,32 +5,31 @@ const AuthContext = createContext();
 export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
 
-  // Function to fetch user from the backend (if logged in)
   const fetchUser = async () => {
     try {
       const res = await fetch('http://localhost:5000/api/v1/user/profile', {
-        method: 'GET',
+        method: 'POST',
         credentials: 'include'
       });
 
-      if (res.ok) {
-        const data = await res.json();
-        setUser(data.user); // Save user info in context
-      } else {
-        setUser(null);
+      if (!res.ok) {
+        throw new Error('Failed to fetch user');
       }
+
+      const data = await res.json();
+      setUser(data.data);
     } catch (error) {
-      console.error('Failed to fetch user:', error);
+      console.error('Error fetching user:', error.message);
       setUser(null);
     }
   };
 
   useEffect(() => {
-    fetchUser(); // Try to load user info on page load
+    fetchUser(); // ✅ Run on app load to persist user
   }, []);
 
   return (
-    <AuthContext.Provider value={{ user, setUser }}>
+    <AuthContext.Provider value={{ user, setUser, fetchUser }}>
       {children}
     </AuthContext.Provider>
   );

@@ -6,11 +6,11 @@ import { useParams } from 'react-router';
 
 export const UserDashBoard = () => {
     const userId=useParams();
-    console.log(userId.userId)
+    console.log(userId)
     const [questions,setQuestions]=useState([])
     const [user,setUser]=useState([])
 
-
+  console.log(user)
     useEffect(()=>{
     const loadData=async()=>{
       try {
@@ -46,21 +46,21 @@ export const UserDashBoard = () => {
 
   return (
     <section className='min-h-screen w-full p-2'>
-        User DashBoard
+        Hi !
         {/* sara content  */}
         <div className='p-4 w-full '>
             {/* title filter and button */}
             <div className='flex justify-between items-center font-semibold mt-10'> 
                 <h1 className='text-3xl'>
-                    User DashBoard
+                  Hi! {user.name}
                 </h1>
                 <div className='flex gap-5'>
                     <button className='px-5 py-2 rounded-lg text-white text-lg border bg-red-400 text white'>
                         filters
                     </button>
-                    <button className='px-5 py-2 rounded-lg text-white text-lg border bg-yellow-400 text white'>
+                    {/* <button className='px-5 py-2 rounded-lg text-white text-lg border bg-yellow-400 text white'>
                         Add Questions
-                    </button>
+                    </button> */}
                 </div>
             </div>
             {/* tables view  */}

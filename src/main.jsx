@@ -11,18 +11,31 @@ import FrontPage from './components/front/FrontPage.jsx'
 import { Login } from './components/login/Login.jsx'
 import { QuestionForm } from './components/question/QuestionForm.jsx'
 import { AuthProvider } from './context/AuthContext.jsx'
+import { ProtectedRoute } from './context/ProtectedRoute.jsx'
+import { Admin } from './pages/Admin.jsx'
+import { User } from './pages/User.jsx'
 // import { Route } from 'lucide-react'
 
 export const router=createBrowserRouter(
   createRoutesFromElements(
     <Route path='/' element={<App/>}>
       <Route path='' element={<FrontPage/>}/>
-      <Route path='/admin' element={<AdminDashBoard/>}/>
-      <Route path='/user' element={<UserDashBoard/>}/>
-      <Route path='/user/:userId' element={<UserDashBoard/>}/>
+      <Route path='/admin' element={
+          <ProtectedRoute>
+             <AdminDashBoard/>
+          </ProtectedRoute>
+        }/>
+      {/* <Route path='/user' element={<UserDashBoard/>}/> */}
+      <Route path='/user/:userId' element={
+        <ProtectedRoute>
+          <UserDashBoard/>
+        </ProtectedRoute>
+      }/>
       <Route path='/register' element={<Register/>}/>
       <Route path='/login' element={<Login/>}/>
       <Route path='/add' element={<QuestionForm/>}/>
+      <Route path='/adminn' element={<Admin/>}/>
+      <Route path='/user' element={<User/>}/>
     </Route>
   )
 )
