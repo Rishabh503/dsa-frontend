@@ -33,7 +33,7 @@ export const UserDashBoard = () => {
 
     // console.log()
     const quesDisplay=questions.filter(ques=>quesData.includes(ques._id)) || ["trying"];
-    // console.log("quesdisplay",quesDisplay)
+    console.log("quesdisplay",quesDisplay)
 
     const findStatus=(userId)=>{
       const statusData= userQues.filter((ques)=>ques.questionId==userId) || []
@@ -42,7 +42,14 @@ export const UserDashBoard = () => {
     }
 
     // console.log(findStatus("67d1f0f727fadbd89ec28d37"));
-
+    const date = new Date('2025-03-16').toISOString().split('T')[0];
+    console.log(date)
+      const todayQuestion=quesDisplay.filter((ques)=>{
+        const deadline = new Date(ques.deadlineByAdmin).toISOString().split('T')[0];
+        return deadline === date;
+      })
+      console.log(todayQuestion)
+    const handleUpdate=async()=>{}
 
   return (
     <section className='min-h-screen w-full p-2'>
@@ -88,7 +95,9 @@ export const UserDashBoard = () => {
                                             {findStatus(question._id).status}
                                           </h1>
                                       <div className='w-1/4 flex gap-1 text-2xl'>
+                                              <button onClick={()=>handleUpdate()}>
                                               <FaRegEdit className='text-fuchsia-400'/>
+                                              </button>
                                               <AiOutlineDelete className='text-red-400'/>
                                      </div>
                                           

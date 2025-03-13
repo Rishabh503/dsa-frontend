@@ -75,3 +75,15 @@ export const addQues=async(formData)=>{
             console.log("error resgitering the user",error)
     }
 }
+export const updateStatus=async(questionId,userId)=>{
+    try {
+        const response=await fetch(`http:/localhost:5000/api/v1/question/${questionId}/question/${userId}`)
+
+        if(!response.ok){
+            throw new Error("error getting response from backend")
+        }
+        console.log(response)
+    } catch (error) {
+        console.log("error ",error)
+    }
+}
