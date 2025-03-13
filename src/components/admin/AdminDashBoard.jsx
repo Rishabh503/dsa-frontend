@@ -1,11 +1,14 @@
 import React, { useEffect, useState } from 'react'
-import { getAllQuestions } from '../data/server'
+import { getAllQuestions } from '../../data/server'
 import { FaRegEdit } from "react-icons/fa";
 import { AiOutlineDelete } from "react-icons/ai";
+import { useNavigate } from 'react-router-dom';
 
 export const AdminDashBoard = () => {
 
     const [questions,setQuestions]=useState([])
+
+    const navigate=useNavigate();
     useEffect(()=>{
     const loadData=async()=>{
       try {
@@ -22,7 +25,7 @@ export const AdminDashBoard = () => {
   return (
     <section className='min-h-screen w-full p-2'>
         {/* sara content  */}
-        <div className='p-4 w-full '>
+        <div className='p-4 w-full mt-10 '>
             {/* title filter and button */}
             <div className='flex justify-between items-center font-semibold mt-10'> 
                 <h1 className='text-3xl'>
@@ -32,7 +35,7 @@ export const AdminDashBoard = () => {
                     <button className='px-5 py-2 rounded-lg text-white text-lg border bg-red-400 text white'>
                         filters
                     </button>
-                    <button className='px-5 py-2 rounded-lg text-white text-lg border bg-yellow-400 text white'>
+                    <button onClick={()=>navigate('/add')} className='px-5 py-2 rounded-lg text-white text-lg border bg-yellow-400 text white'>
                         Add Questions
                     </button>
                 </div>
