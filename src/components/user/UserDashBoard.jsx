@@ -2,14 +2,16 @@ import React, { useEffect, useState } from 'react'
 import { getAllQuestions, getAllUsers, getOneUser } from '../../data/server.js'
 import { FaRegEdit } from "react-icons/fa";
 import { AiOutlineDelete } from "react-icons/ai";
-import { useParams } from 'react-router';
+import { useNavigate, useParams } from 'react-router';
+import { ReminderForm } from '../reminder/ReminderForm.jsx';
+import { QuestionStatusUpdate } from '../question/QuestionStatusUpdate.jsx';
 
 export const UserDashBoard = () => {
     const userId=useParams();
-    console.log(userId)
+    console.log("idhrr",userId.userId)
     const [questions,setQuestions]=useState([])
     const [user,setUser]=useState([])
-
+  const navigate=useNavigate()
   console.log(user)
     useEffect(()=>{
     const loadData=async()=>{
@@ -49,7 +51,9 @@ export const UserDashBoard = () => {
         return deadline === date;
       })
       console.log(todayQuestion)
-    const handleUpdate=async()=>{}
+    const handleUpdate=async()=>{
+      navigate()
+    }
 
   return (
     <section className='min-h-screen w-full p-2'>
@@ -95,9 +99,12 @@ export const UserDashBoard = () => {
                                             {findStatus(question._id).status}
                                           </h1>
                                       <div className='w-1/4 flex gap-1 text-2xl'>
-                                              <button onClick={()=>handleUpdate()}>
-                                              <FaRegEdit className='text-fuchsia-400'/>
-                                              </button>
+                                      <ReminderForm questionId={question._id} userId={userId.userId}/>
+                                      <QuestionStatusUpdate questionId={question._id} userId={userId.userId}/>
+                                              
+                                              {/* <FaRegEdit className='text-fuchsia-400'/>  */}
+                                              {/* <ReminderForm/> */}
+                                              
                                               <AiOutlineDelete className='text-red-400'/>
                                      </div>
                                           

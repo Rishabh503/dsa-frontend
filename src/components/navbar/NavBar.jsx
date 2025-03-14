@@ -47,8 +47,9 @@ console.log(user)
             <NavItem icon={<List size={20} />} label="Ques" />
             </NavLink> */}
           
-         
-          <NavItem icon={<Clock size={20} />} label="Reminders" />
+         <NavLink to={`user/reminder/${user._id}`}>
+                <NavItem icon={<Clock size={20} />} label="Reminders" />
+         </NavLink>
           <NavItem icon={<Users size={20} />} label="Groups" />
           <NavItem icon={<Star size={20} />} label="Starred Ques" />
           <NavItem icon={<BarChart size={20} />} label="Progress" />

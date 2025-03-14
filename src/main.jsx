@@ -14,6 +14,9 @@ import { AuthProvider } from './context/AuthContext.jsx'
 import { ProtectedRoute } from './context/ProtectedRoute.jsx'
 import { Admin } from './pages/Admin.jsx'
 import { User } from './pages/User.jsx'
+import { ReminderDashBoard } from './components/reminder/ReminderDashBoard.jsx'
+import { ReminderForm } from './components/reminder/ReminderForm.jsx'
+import { DataProvider } from './context/DataContext'
 // import { Route } from 'lucide-react'
 
 export const router=createBrowserRouter(
@@ -31,9 +34,15 @@ export const router=createBrowserRouter(
           <UserDashBoard/>
         </ProtectedRoute>
       }/>
+       <Route path='/user/reminder/:userId' element={
+        <ProtectedRoute>
+          <ReminderDashBoard/>
+        </ProtectedRoute>
+      }/>
       <Route path='/register' element={<Register/>}/>
       <Route path='/login' element={<Login/>}/>
       <Route path='/add' element={<QuestionForm/>}/>
+      <Route path='/addReminder/:questionId' element={<ReminderForm/>}/>
       <Route path='/adminn' element={<Admin/>}/>
       <Route path='/user' element={<User/>}/>
     </Route>
@@ -44,7 +53,9 @@ export const router=createBrowserRouter(
 createRoot(document.getElementById('root')).render(
   <StrictMode>
     <AuthProvider>
+      <DataProvider>
       <RouterProvider router={router} />
+      </DataProvider>
     </AuthProvider>
   </StrictMode>,  
 ) 

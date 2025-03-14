@@ -75,15 +75,44 @@ export const addQues=async(formData)=>{
             console.log("error resgitering the user",error)
     }
 }
-export const updateStatus=async(questionId,userId)=>{
+export const updateStatus=async(questionId,userId,formData)=>{
     try {
-        const response=await fetch(`http:/localhost:5000/api/v1/question/${questionId}/question/${userId}`)
+        const response=await fetch(`http://localhost:5000/api/v1/question/${questionId}/question/${userId}`,{
 
+            method:'PUT',
+            headers:{
+                'Content-Type': 'application/json'
+           },
+            body:JSON.stringify(formData)
+        })
+        console.log(response)
         if(!response.ok){
             throw new Error("error getting response from backend")
         }
         console.log(response)
+        return response.json()
     } catch (error) {
         console.log("error ",error)
+    }
+}
+
+export const createReminder=async(questionId,userId,formData)=>{
+    console.log("from reminders",questionId,userId)
+    try {
+        const response=await fetch(`http://localhost:5000/api/v1/question/reminder/${questionId}/question/${userId}`,
+          {  method:'POST',
+            headers:{
+                 'Content-Type': 'application/json'
+            },
+            body:JSON.stringify(formData)}
+        )
+        console.log(response)
+        if(!response.ok){
+            throw new Error("error getting response from backend")
+        }
+        console.log(response)
+        return response.json();
+    } catch (error) {
+        console.log("errorid ",error)
     }
 }
