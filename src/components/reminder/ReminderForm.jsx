@@ -17,7 +17,7 @@ import { useState } from "react"
 import { useParams } from "react-router"
 import { toast } from "react-toastify"
 
-export function ReminderForm({questionId,userId}) {
+export function ReminderForm({icon,questionId,userId}) {
     const [date, setDate] = useState('')
     const {findQuesDetails}=useData();
 const quesDetails=findQuesDetails(questionId)
@@ -46,7 +46,7 @@ console.log(user._id,questionId)
   return (
     <Dialog>
       <DialogTrigger asChild>
-        <Button className='bg-fuchsia-400' variant="outline">Add Reminder</Button>
+        <Button className='bg-fuchsia-400 flex items-center' variant="outline">  Add {icon}</Button>
       </DialogTrigger>
       <DialogContent className="sm:max-w-[425px]">
         <DialogHeader>

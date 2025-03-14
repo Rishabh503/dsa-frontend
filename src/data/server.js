@@ -116,3 +116,23 @@ export const createReminder=async(questionId,userId,formData)=>{
         console.log("errorid ",error)
     }
 }
+export const markAsStar=async(questionId,userId,formData)=>{
+    // console.log("from reminders",questionId,userId)
+    try {
+        const response=await fetch(`http://localhost:5000/api/v1/question/markAsStar/${questionId}/question/${userId}`,
+          {  method:'PUT',
+            headers:{
+                 'Content-Type': 'application/json'
+            },
+            body:JSON.stringify(formData)}
+        )
+        console.log(response)
+        if(!response.ok){
+            throw new Error("error getting response from backend")
+        }
+        console.log(response)
+        return response.json();
+    } catch (error) {
+        console.log("errorid ",error)
+    }
+}

@@ -17,6 +17,7 @@ import { User } from './pages/User.jsx'
 import { ReminderDashBoard } from './components/reminder/ReminderDashBoard.jsx'
 import { ReminderForm } from './components/reminder/ReminderForm.jsx'
 import { DataProvider } from './context/DataContext'
+import { StarredDashBoard } from './components/starred/StarredDashBoard'
 // import { Route } from 'lucide-react'
 
 export const router=createBrowserRouter(
@@ -37,6 +38,11 @@ export const router=createBrowserRouter(
        <Route path='/user/reminder/:userId' element={
         <ProtectedRoute>
           <ReminderDashBoard/>
+        </ProtectedRoute>
+      }/>
+       <Route path='/user/starred/:userId' element={
+        <ProtectedRoute>
+          <StarredDashBoard/>
         </ProtectedRoute>
       }/>
       <Route path='/register' element={<Register/>}/>

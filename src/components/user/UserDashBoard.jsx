@@ -5,12 +5,15 @@ import { AiOutlineDelete } from "react-icons/ai";
 import { useNavigate, useParams } from 'react-router';
 import { ReminderForm } from '../reminder/ReminderForm.jsx';
 import { QuestionStatusUpdate } from '../question/QuestionStatusUpdate.jsx';
+import { Bell, Pen, StarHalf, StarIcon } from 'lucide-react';
+import { Star } from '../question/Star.jsx';
 
 export const UserDashBoard = () => {
     const userId=useParams();
     console.log("idhrr",userId.userId)
     const [questions,setQuestions]=useState([])
     const [user,setUser]=useState([])
+    const [loading,setLoading]=useState(false)
   const navigate=useNavigate()
   console.log(user)
     useEffect(()=>{
@@ -18,6 +21,7 @@ export const UserDashBoard = () => {
       try {
         const data=await getAllQuestions();
         const user=await getOneUser(userId.userId);
+        setLoading(true)
         setQuestions(data.data)
         setUser(user.data)
       } catch (error) {
@@ -27,7 +31,7 @@ export const UserDashBoard = () => {
       loadData()
     },[])
     // console.log("all ques",questions)
-    // console.log("user ka data",user.questions)
+    console.log("user kax data",user.starred)
     const userQues=user.questions || []
     const quesData=userQues.map((ques)=>ques.questionId) || ["hello"]
     // console.log("ques of user aa ",userQues)
@@ -54,7 +58,11 @@ export const UserDashBoard = () => {
     const handleUpdate=async()=>{
       navigate()
     }
-
+    const findStar=(quesId)=>{
+        const val=loading?user.starred.includes(quesId):""
+        return val;
+    }
+    console.log("trying gettig",findStar("67d34b69e5966e4550dd1b3c"))
   return (
     <section className='min-h-screen w-full p-2'>
         Hi !
@@ -95,17 +103,19 @@ export const UserDashBoard = () => {
                                           <h1 className='w-1/4'>{question.level}</h1>
                                           <h1 className='w-1/4'>{question.deadlineByAdmin.slice(0,10)}</h1>
                                           {/* <h1 className='w-1/4'>{question.status}</h1> */}
-                                          <h1 className='w-1/4'>
+                                          <h1 className='w-1/4 flex items-center'>
                                             {findStatus(question._id).status}
+                                            <QuestionStatusUpdate icon={<Pen/>} questionId={question._id} userId={userId.userId}/>
                                           </h1>
                                       <div className='w-1/4 flex gap-1 text-2xl'>
-                                      <ReminderForm questionId={question._id} userId={userId.userId}/>
-                                      <QuestionStatusUpdate questionId={question._id} userId={userId.userId}/>
-                                              
+                                      <ReminderForm icon={<Bell/>} questionId={question._id} userId={userId.userId}/>
+                                      <Star  icon={<StarIcon/>} color={findStar(question._id)} questionId={question._id} userId={userId.userId}/>
+                                      {/* <QuestionStatusUpdate icon={<Pen/>} questionId={question._id} userId={userId.userId}/> */}
+                                              {/* <Star/> */}
                                               {/* <FaRegEdit className='text-fuchsia-400'/>  */}
                                               {/* <ReminderForm/> */}
                                               
-                                              <AiOutlineDelete className='text-red-400'/>
+                                              {/* <AiOutlineDelete className='text-red-400'/> */}
                                      </div>
                                           
                                  </div>

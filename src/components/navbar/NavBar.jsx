@@ -50,8 +50,11 @@ console.log(user)
          <NavLink to={`user/reminder/${user._id}`}>
                 <NavItem icon={<Clock size={20} />} label="Reminders" />
          </NavLink>
+         <NavLink to={`user/starred/${user._id}`}>
+             <NavItem icon={<Star size={20} />} label="Starred Ques" />
+         </NavLink>
           <NavItem icon={<Users size={20} />} label="Groups" />
-          <NavItem icon={<Star size={20} />} label="Starred Ques" />
+     
           <NavItem icon={<BarChart size={20} />} label="Progress" />
 
          <button onClick={()=>{handleLogout()}} >
