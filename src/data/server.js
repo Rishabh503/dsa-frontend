@@ -1,7 +1,7 @@
 export const getAllQuestions=async()=>{
     // let data=[];
     try {
-        const response=await fetch('http://localhost:5000/api/v1/question/getAllQuestions')
+        const response=await fetch('https://dsa-backend-yr7z.onrender.com/api/v1/question/getAllQuestions')
         if(!response.ok) throw new Error("error fetchiing the data")
         const data=await response.json()
     return data;
@@ -14,7 +14,7 @@ export const getAllQuestions=async()=>{
 
 export const getAllUsers=async()=>{
     try {
-        const response=await fetch('http://localhost:5000/api/v1/user/allUsers')
+        const response=await fetch('https://dsa-backend-yr7z.onrender.com/api/v1/user/allUsers')
         if(!response.ok) throw new Error("error fetchiing the data")
         const data=await response.json()
     return data;
@@ -26,7 +26,7 @@ export const getAllUsers=async()=>{
 
 export const getOneUser=async(userId)=>{
     try {
-        const response=await fetch(`http://localhost:5000/api/v1/user/oneUser/${userId}`)
+        const response=await fetch(`https://dsa-backend-yr7z.onrender.com/api/v1/user/oneUser/${userId}`)
         if(!response.ok) throw new Error("error fetchiing the data",error)
         const data=await response.json()
     return data;
@@ -39,7 +39,7 @@ export const getOneUser=async(userId)=>{
 export const registerUser=async(formData)=>{
     console.log(formData)
     try{
-        const response =await fetch('http://localhost:5000/api/v1/user/register',{
+        const response =await fetch('https://dsa-backend-yr7z.onrender.com/api/v1/user/register',{
             method:'POST',
             headers:{
                  'Content-Type': 'application/json'
@@ -59,7 +59,7 @@ export const registerUser=async(formData)=>{
 export const addQues=async(formData)=>{
     console.log(formData)
     try{
-        const response =await fetch('http://localhost:5000/api/v1/question/newQuestion',{
+        const response =await fetch('https://dsa-backend-yr7z.onrender.com/api/v1/question/newQuestion',{
             method:'POST',
             headers:{
                  'Content-Type': 'application/json'
@@ -77,7 +77,7 @@ export const addQues=async(formData)=>{
 }
 export const updateStatus=async(questionId,userId,formData)=>{
     try {
-        const response=await fetch(`http://localhost:5000/api/v1/question/${questionId}/question/${userId}`,{
+        const response=await fetch(`https://dsa-backend-yr7z.onrender.com/api/v1/question/${questionId}/question/${userId}`,{
 
             method:'PUT',
             headers:{
@@ -98,7 +98,7 @@ export const updateStatus=async(questionId,userId,formData)=>{
 
 export const remiderUpdate=async(reminderId,formData)=>{
     try {
-        const response=await fetch(`http://localhost:5000/api/v1/question/reminder/${reminderId}`,
+        const response=await fetch(`https://dsa-backend-yr7z.onrender.com/api/v1/question/reminder/${reminderId}`,
             {
                 method:'PUT',
                 headers:{
@@ -120,7 +120,7 @@ export const remiderUpdate=async(reminderId,formData)=>{
 export const createReminder=async(questionId,userId,formData)=>{
     console.log("from reminders",questionId,userId)
     try {
-        const response=await fetch(`http://localhost:5000/api/v1/question/reminder/${questionId}/question/${userId}`,
+        const response=await fetch(`https://dsa-backend-yr7z.onrender.com/api/v1/question/reminder/${questionId}/question/${userId}`,
           {  method:'POST',
             headers:{
                  'Content-Type': 'application/json'
@@ -140,7 +140,7 @@ export const createReminder=async(questionId,userId,formData)=>{
 export const markAsStar=async(questionId,userId,formData)=>{
     // console.log("from reminders",questionId,userId)
     try {
-        const response=await fetch(`http://localhost:5000/api/v1/question/markAsStar/${questionId}/question/${userId}`,
+        const response=await fetch(`https://dsa-backend-yr7z.onrender.com/api/v1/question/markAsStar/${questionId}/question/${userId}`,
           {  method:'PUT',
             headers:{
                  'Content-Type': 'application/json'
