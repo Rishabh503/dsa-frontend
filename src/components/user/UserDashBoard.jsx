@@ -8,6 +8,7 @@ import { QuestionStatusUpdate } from '../question/QuestionStatusUpdate.jsx';
 import { Bell, Combine, Pen, StarHalf, StarIcon } from 'lucide-react';
 import { Star } from '../question/Star.jsx';
 import { useData } from '@/context/DataContext.jsx';
+import { ReminderStatusUpdate } from '../reminder/ReminderUpdate.jsx';
 
 export const UserDashBoard = () => {
     const userId=useParams();
@@ -64,12 +65,14 @@ export const UserDashBoard = () => {
     }
     const reminderToday=loading?user.reminders.filter((ques)=>{
       const deadline=new Date(ques.date).toISOString().split('T')[0];
-      return deadline!=date
+      return deadline==date
     }) : [];
  
     // todayQuestion=[...todayQuestion];
     console.log(reminderToday.map((ques)=>findQuesDetails(ques.question)))
        console.log(reminderToday)
+
+    const reminders=user.reminders;
   return (
     <section className='min-h-screen w-full p-2'>
         Hi !
@@ -99,9 +102,11 @@ export const UserDashBoard = () => {
                     <h1 className='w-1/4'>Actions</h1>
                     
                 </div>
-                <div className='flex flex-col gap-2'>
-                  today question
-                         {
+                <div className='flex flex-col mt-5 gap-2'>
+                <p className='text-center text-xl font-semibold'>
+                Today <span className='text-blue-800'>New</span> question
+                </p>
+                         {todayQuestion.length>0?
                                todayQuestion.
                                map((question)=>(
                                       <div className='w-full pl-3 border items-center shadow-md h-auto py-4 rounded-lg flex '>
@@ -112,8 +117,8 @@ export const UserDashBoard = () => {
                                           <h1 className='w-1/4'>{question.level}</h1>
                                           <h1 className='w-1/4'>{question.deadlineByAdmin.slice(0,10)}</h1>
                                           {/* <h1 className='w-1/4'>{question.status}</h1> */}
-                                          <h1 className='w-1/4 flex items-center'>
-                                            {findStatus(question._id).status}
+                                          <h1 className='w-1/4 flex items-center '>
+                                              <span >{findStatus(question._id).status}</span>
                                             <QuestionStatusUpdate icon={<Pen/>} questionId={question._id} userId={userId.userId}/>
                                           </h1>
                                       <div className='w-1/4 flex gap-1 text-2xl'>
@@ -128,11 +133,50 @@ export const UserDashBoard = () => {
                                      </div>
                                           
                                  </div>
-                               ))
+                               )):
+                               <div>
+                                  <p className='text-lg text-center '>!No Particular Questions  for today Come back tommorow or solve the starred questions</p>
+                                 </div>
                             }
                       </div>
-                      all question
-                <div className='flex flex-col gap-2'>
+
+                <div className='flex flex-col mt-5 gap-2'>
+                <p className='text-center text-xl font-semibold'>
+                Today <span className='text-blue-800'>REMIDERS</span> question
+                </p>
+                         {reminderToday.length>0?
+                               reminderToday.map((ques)=>findQuesDetails(ques.question)).
+                               map((question,i)=>(
+                                      <div key={i}  className='w-full pl-3 border items-center shadow-md h-auto py-4 rounded-lg flex '>
+                                          <div className='w-1/2'>
+                                            <p>{question.name}</p>
+                                            <a href={question.link} className='text-sm'>Visit</a>
+                                          </div>
+                                          <h1 className='w-1/4'>{question.level}</h1>
+                                          {/* <h1 className='w-1/4'>{question.date.slice(0,10)}</h1> */}
+                                          <h1 className='w-1/4'>{reminderToday[i].date.slice(0,10)}</h1>
+                                          <h1 className='w-1/4'>{reminderToday[i].status}
+                                          <ReminderStatusUpdate icon={<Pen/>} questionId={question._id} reminderId={reminderToday[i]._id}/></h1>
+                                         <h1 className='w-1/4 flex items-center'>
+                                           
+                                          <button className='rounded-sm bg-blue-400 px-3 py-2'>No Actions</button>
+                                          </h1>
+                    
+                                          
+                                 </div>
+                               ))
+                               :<div>
+                                  <p className='text-lg text-center '>!No reminders for today Come back tommorow or check your reminders section</p>
+                                 </div>
+                            }
+                      </div>
+
+
+                      {/* all question */}
+                      <div className='flex flex-col mt-5 gap-2'>
+                <p className='text-center text-xl font-semibold'>
+                All <span className='text-blue-800'></span> Questions
+                </p>
                          {
                                quesDisplay.
                                map((question)=>(
