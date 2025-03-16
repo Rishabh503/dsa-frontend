@@ -7,7 +7,7 @@ export default function AdminNavBar() {
   const navigate=useNavigate()
   const handleLogout=async()=>{
     try {
-      const response=await fetch(`http://localhost:5000/api/v1/user/logout`,
+      const response=await fetch(`https://dsa-backend-yr7z.onrender.com/api/v1/user/logout`,
         {
           method:"POST",
           credentials: 'include'

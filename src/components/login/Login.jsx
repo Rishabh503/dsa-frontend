@@ -12,7 +12,7 @@ const {setUser,fetchUser} = useAuth();
   const handleLogin = async (e) => {
     e.preventDefault();
     try {
-      const res = await fetch('http://localhost:5000/api/v1/user/login', {
+      const res = await fetch('https://dsa-backend-yr7z.onrender.com/api/v1/user/login', {
           method: 'POST',
           headers: {
               'Content-Type': 'application/json'
