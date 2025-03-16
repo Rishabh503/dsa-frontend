@@ -18,6 +18,7 @@ import { ReminderDashBoard } from './components/reminder/ReminderDashBoard.jsx'
 import { ReminderForm } from './components/reminder/ReminderForm.jsx'
 import { DataProvider } from './context/DataContext'
 import { StarredDashBoard } from './components/starred/StarredDashBoard'
+import { ProgreessDashboard } from './components/progress/ProgreessDashboard'
 // import { Route } from 'lucide-react'
 
 export const router=createBrowserRouter(
@@ -45,6 +46,12 @@ export const router=createBrowserRouter(
           <StarredDashBoard/>
         </ProtectedRoute>
       }/>
+       <Route path='/user/progress/:userId' element={
+        <ProtectedRoute>
+          <ProgreessDashboard/>
+        </ProtectedRoute>
+      }/>
+
       <Route path='/register' element={<Register/>}/>
       <Route path='/login' element={<Login/>}/>
       <Route path='/add' element={<QuestionForm/>}/>

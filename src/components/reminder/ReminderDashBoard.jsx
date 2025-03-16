@@ -3,12 +3,15 @@ import { useParams } from 'react-router'
 import { useAuth } from '../../context/AuthContext';
 import { getAllQuestions, getOneUser } from '../../data/server';
 import { FaRegHospital } from 'react-icons/fa';
+import { ReminderStatusUpdate } from './ReminderUpdate';
+import { Pen, Upload } from 'lucide-react';
 
 export const ReminderDashBoard = () => {
     const userId=useParams();
     const {user}=useAuth();
     // console.log(user)
-    console.log(userId.userId)
+    console.log(user)
+    console.log(user.reminders)
     const[loading,setLoading]=useState(false)
     const [userData,setUserData]=useState();
     const [questions,setQuestions]=useState()
@@ -65,6 +68,7 @@ export const ReminderDashBoard = () => {
                   <th className="border border-gray-300 px-4 py-2">Level</th>
                   {/* <th className="border border-gray-300 px-4 py-2">Deadline</th> */}
                   <th className="border border-gray-300 px-4 py-2">Solve Again Date</th>
+                  <th className="border border-gray-300 px-4 py-2">Status</th>
                   <th className="border border-gray-300 px-4 py-2">Action</th>
                 </tr>
               </thead>
@@ -108,7 +112,10 @@ export const ReminderDashBoard = () => {
                     <td className="border text-center border-gray-300 px-4 py-2">
                       {reminders[i].date.slice(0,10)}
                     </td>
-                    <td className="border border-gray-300 px-4 py-2">
+                    <td className="border text-center border-gray-300 px-4 py-2">
+                      {reminders[i].status}
+                    </td>
+                    {/* <td className="border border-gray-300 px-4 py-2">
                       {reminder.done ? (
                         <span className="text-green-500">Completed</span>
                       ) : (
@@ -119,6 +126,10 @@ export const ReminderDashBoard = () => {
                           Mark as Done
                         </button>
                       )}
+
+                    </td> */}
+                   <td className="border text-center border-gray-300 px-4 py-2">
+                      <ReminderStatusUpdate icon={<Pen/>} questionId={reminder._id} reminderId={reminders[i]._id}/>
                     </td>
                   </tr>
                 )):""}

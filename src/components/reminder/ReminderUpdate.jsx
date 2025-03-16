@@ -12,12 +12,12 @@ import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { useAuth } from "@/context/AuthContext"
 import { useData } from "@/context/DataContext"
-import { createReminder, updateStatus } from "@/data/server"
+import { createReminder, remiderUpdate, updateStatus } from "@/data/server"
 import { useState } from "react"
 import { useParams } from "react-router"
 import { toast } from "react-toastify"
 
-export function QuestionStatusUpdate({icon,questionId,userId}) {
+export function ReminderStatusUpdate({icon,reminderId,questionId}) {
     const [status, setStatus] = useState('')
     const {findQuesDetails}=useData();
     const quesDetails=findQuesDetails(questionId)
@@ -33,7 +33,7 @@ const {user}=useAuth()
             status:status
         }
         try {
-            const reminder=await updateStatus(questionId,userId,formData);
+            const reminder=await remiderUpdate(reminderId,formData);
             console.log(reminder)
             toast.success(reminder.message)
             setStatus("")

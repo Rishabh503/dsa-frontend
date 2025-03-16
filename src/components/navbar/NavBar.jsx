@@ -53,9 +53,12 @@ console.log(user)
          <NavLink to={`user/starred/${user._id}`}>
              <NavItem icon={<Star size={20} />} label="Starred Ques" />
          </NavLink>
+         <NavLink to={`user/progress/${user._id}`}>
+           
+          <NavItem icon={<BarChart size={20} />} label="Progress" />
+         </NavLink>
           <NavItem icon={<Users size={20} />} label="Groups" />
      
-          <NavItem icon={<BarChart size={20} />} label="Progress" />
 
          <button onClick={()=>{handleLogout()}} >
             <NavItem icon={<LogOut size={20} />} label="Logout" />

@@ -24,6 +24,7 @@ export const QuestionForm = () => {
             const question=await addQues(formData)
             toast.success(question.message)
             console.log(question)
+            setDate('');setName('');setLink('');
         } catch (error) {
             console.log("ERR",error)
         }

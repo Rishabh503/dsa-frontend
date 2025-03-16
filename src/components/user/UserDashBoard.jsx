@@ -5,8 +5,9 @@ import { AiOutlineDelete } from "react-icons/ai";
 import { useNavigate, useParams } from 'react-router';
 import { ReminderForm } from '../reminder/ReminderForm.jsx';
 import { QuestionStatusUpdate } from '../question/QuestionStatusUpdate.jsx';
-import { Bell, Pen, StarHalf, StarIcon } from 'lucide-react';
+import { Bell, Combine, Pen, StarHalf, StarIcon } from 'lucide-react';
 import { Star } from '../question/Star.jsx';
+import { useData } from '@/context/DataContext.jsx';
 
 export const UserDashBoard = () => {
     const userId=useParams();
@@ -15,6 +16,7 @@ export const UserDashBoard = () => {
     const [user,setUser]=useState([])
     const [loading,setLoading]=useState(false)
   const navigate=useNavigate()
+  const {findQuesDetails}=useData();
   console.log(user)
     useEffect(()=>{
     const loadData=async()=>{
@@ -50,19 +52,24 @@ export const UserDashBoard = () => {
     // console.log(findStatus("67d1f0f727fadbd89ec28d37"));
     const date = new Date('2025-03-16').toISOString().split('T')[0];
     console.log(date)
-      const todayQuestion=quesDisplay.filter((ques)=>{
+      let todayQuestion=quesDisplay.filter((ques)=>{
         const deadline = new Date(ques.deadlineByAdmin).toISOString().split('T')[0];
         return deadline === date;
       })
-      console.log(todayQuestion)
-    const handleUpdate=async()=>{
-      navigate()
-    }
+      console.log("todayQuestion",todayQuestion)
+ 
     const findStar=(quesId)=>{
         const val=loading?user.starred.includes(quesId):""
         return val;
     }
-    console.log("trying gettig",findStar("67d34b69e5966e4550dd1b3c"))
+    const reminderToday=loading?user.reminders.filter((ques)=>{
+      const deadline=new Date(ques.date).toISOString().split('T')[0];
+      return deadline!=date
+    }) : [];
+ 
+    // todayQuestion=[...todayQuestion];
+    console.log(reminderToday.map((ques)=>findQuesDetails(ques.question)))
+       console.log(reminderToday)
   return (
     <section className='min-h-screen w-full p-2'>
         Hi !
@@ -93,8 +100,42 @@ export const UserDashBoard = () => {
                     
                 </div>
                 <div className='flex flex-col gap-2'>
+                  today question
                          {
-                               quesDisplay.map((question)=>(
+                               todayQuestion.
+                               map((question)=>(
+                                      <div className='w-full pl-3 border items-center shadow-md h-auto py-4 rounded-lg flex '>
+                                          <div className='w-1/2'>
+                                            <p>{question.name}</p>
+                                            <a href={question.link} className='text-sm'>Visit</a>
+                                          </div>
+                                          <h1 className='w-1/4'>{question.level}</h1>
+                                          <h1 className='w-1/4'>{question.deadlineByAdmin.slice(0,10)}</h1>
+                                          {/* <h1 className='w-1/4'>{question.status}</h1> */}
+                                          <h1 className='w-1/4 flex items-center'>
+                                            {findStatus(question._id).status}
+                                            <QuestionStatusUpdate icon={<Pen/>} questionId={question._id} userId={userId.userId}/>
+                                          </h1>
+                                      <div className='w-1/4 flex gap-1 text-2xl'>
+                                      <ReminderForm icon={<Bell/>} questionId={question._id} userId={userId.userId}/>
+                                      <Star  icon={<StarIcon/>} color={findStar(question._id)} questionId={question._id} userId={userId.userId}/>
+                                      {/* <QuestionStatusUpdate icon={<Pen/>} questionId={question._id} userId={userId.userId}/> */}
+                                              {/* <Star/> */}
+                                              {/* <FaRegEdit className='text-fuchsia-400'/>  */}
+                                              {/* <ReminderForm/> */}
+                                              
+                                              {/* <AiOutlineDelete className='text-red-400'/> */}
+                                     </div>
+                                          
+                                 </div>
+                               ))
+                            }
+                      </div>
+                      all question
+                <div className='flex flex-col gap-2'>
+                         {
+                               quesDisplay.
+                               map((question)=>(
                                       <div className='w-full pl-3 border items-center shadow-md h-auto py-4 rounded-lg flex '>
                                           <div className='w-1/2'>
                                             <p>{question.name}</p>

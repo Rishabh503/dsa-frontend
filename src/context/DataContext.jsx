@@ -33,7 +33,7 @@ export const DataProvider = ({ children }) => {
             getData();
         },[])
         // console.log("userdata",userData)
-        // console.log("quesd",questions)
+        console.log("quesd",questions)
     
         
         // console.log("reminders",reminders)

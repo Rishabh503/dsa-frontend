@@ -96,6 +96,27 @@ export const updateStatus=async(questionId,userId,formData)=>{
     }
 }
 
+export const remiderUpdate=async(reminderId,formData)=>{
+    try {
+        const response=await fetch(`http://localhost:5000/api/v1/question/reminder/${reminderId}`,
+            {
+                method:'PUT',
+                headers:{
+                    'Content-Type': 'application/json'
+               },
+                body:JSON.stringify(formData)
+            }
+        )
+
+        if(!response.ok) {
+            throw new Error(response.message)
+        }
+        return response.json();
+    } catch (error) {
+        console.log(error)
+    }
+}
+
 export const createReminder=async(questionId,userId,formData)=>{
     console.log("from reminders",questionId,userId)
     try {

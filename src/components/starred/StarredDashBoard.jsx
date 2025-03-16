@@ -34,7 +34,7 @@ export const StarredDashBoard = () => {
 
   return (
     <div className="container mx-auto mt-20 p-4">
-      <h1 className="text-2xl font-bold mb-4">Starred Dashboard</h1>
+      <h1 className="text-2xl font-bold mb-4">Starred Questions </h1>
       <div className="overflow-x-auto">
         <table className="w-full border-collapse border border-gray-300">
           <thead>
