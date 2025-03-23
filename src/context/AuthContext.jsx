@@ -3,11 +3,11 @@ import { createContext, useContext, useEffect, useState } from 'react';
 const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
-  const [user, setUser] = useState(null);
+  const [user, setUser] = useState("");
 
   const fetchUser = async () => {
     try {
-      const res = await fetch('https://dsa-backend-yr7z.onrender.com/api/v1/user/profile', {
+      const res = await fetch('http://localhost:5000/api/v1/user/profile', {
         method: 'POST',
         credentials: 'include'
       });
@@ -17,6 +17,7 @@ export const AuthProvider = ({ children }) => {
       }
 
       const data = await res.json();
+      console.log(user)
       setUser(data.data);
     } catch (error) {
       console.error('Error fetching user:', error.message);
