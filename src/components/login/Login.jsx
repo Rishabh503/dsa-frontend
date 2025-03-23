@@ -48,13 +48,14 @@ export const Login = () => {
 
   return (
     <section className='min-h-screen w-full flex items-center justify-center'>
-    <div className='p-10 w-1/2'>
-    <div className='border px-10 py-4 w-full bg-gray-300  rounded-md'>
+    <div className='sm:p-10 w-full p-4   sm:w-1/2'>
+    <div className='border sm:px-10 sm:py-4 w-full bg-gray-300  rounded-md'>
+      
      <h2 className='text-center'>Login</h2>
-      <form className='flex flex-col gap-2' onSubmit={handleLogin}>
-       <div className='flex flex-col '>
-       <label htmlFor="">Email</label>
-        <input className='border rounded-md'
+      <form className='flex flex-col gap-2 items-center' onSubmit={handleLogin}>
+       <div className='flex p-2 flex-col '>
+       <label className='pl-2' htmlFor="">Email</label>
+        <input className='border pl-2 rounded-md'
           type="email"
           placeholder="Email"
           value={email}
@@ -65,9 +66,9 @@ export const Login = () => {
 
 
 
-       <div className='flex flex-col '>
-       <label htmlFor="">Password</label>
-       <input className='border rounded-md'
+       <div className='flex px-2 flex-col '>
+       <label className='pl-2' htmlFor="">Password</label>
+       <input className='border pl-2 rounded-md'
           type="password"
           placeholder="Password"
           value={password}
@@ -75,7 +76,7 @@ export const Login = () => {
           required
         />
        </div>
-        <button className='bg-red-300' type="submit">Login</button>
+        <button className='bg-red-300 rounded-md w-1/3 ' type="submit">Login</button>
       </form>
      </div>
     </div>

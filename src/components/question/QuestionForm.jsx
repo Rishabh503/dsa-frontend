@@ -32,7 +32,7 @@ export const QuestionForm = () => {
   return (
     <section className='w-full bg-gray-100 h-full min-h-screen'>
         {/* sara samana */}
-        <div className='h-full w-full flex  items-center shadow-sm px-64 py-32'>
+        <div className='h-full w-full flex mt:16  items-center shadow-sm sm:px-64 sm:py-32'>
             {/* isko kreegee center */}
             <div className='p-3 bg-white rounded-md mx-auto border w-[80%]'>
                 <div className='flex justify-between w-full'>

@@ -30,9 +30,9 @@ export default function AdminNavBar() {
 
         {/* Desktop Nav */}
         <div className="hidden md:flex gap-6">
-            <NavLink to='/admin'>
+           <NavLink to='/admin'>
              <NavItem icon={<List size={20} />} label="Admin" />
-            </NavLink>
+            </NavLink> 
             {/* <NavLink to='/user'>
              <NavItem icon={<List size={20} />} label="User" />
             </NavLink> */}
@@ -60,11 +60,15 @@ export default function AdminNavBar() {
       {/* Mobile Nav */}
       {isOpen && (
         <div className="md:hidden mt-4 space-y-2">
-          <NavItem icon={<List size={20} />} label="Ques" />
-          <NavItem icon={<Clock size={20} />} label="Reminders" />
-          <NavItem icon={<Users size={20} />} label="Groups" />
+         <NavLink to='/admin'>
+             <NavItem icon={<List size={20} />} label="Admin" />
+            </NavLink> 
+            <NavLink to='/add'>
+            <NavItem icon={<List size={20} />} label="Ques" />
+            </NavLink>
+          {/* <NavItem icon={<Users size={20} />} label="Groups" />
           <NavItem icon={<Star size={20} />} label="Starred Ques" />
-          <NavItem icon={<LogOut size={20} />} label="Progress" />
+          <NavItem icon={<LogOut size={20} />} label="Progress" /> */}
         </div>
       )}
     </nav>

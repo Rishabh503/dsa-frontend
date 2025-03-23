@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { getAllQuestions, getAllUsers, getOneUser } from '../../data/server.js'
-import { FaRegEdit } from "react-icons/fa";
+import { FaRegEdit, FaSearch } from "react-icons/fa";
 import { AiOutlineDelete } from "react-icons/ai";
 import { useNavigate, useParams } from 'react-router';
 import { ReminderForm } from '../reminder/ReminderForm.jsx';
@@ -9,6 +9,7 @@ import { Bell, Combine, Pen, StarHalf, StarIcon } from 'lucide-react';
 import { Star } from '../question/Star.jsx';
 import { useData } from '@/context/DataContext.jsx';
 import { ReminderStatusUpdate } from '../reminder/ReminderUpdate.jsx';
+// import { c } from 'vite/dist/node/moduleRunnerTransport.d-CXw_Ws6P.js';
 
 export const UserDashBoard = () => {
     const userId=useParams();
@@ -51,8 +52,8 @@ export const UserDashBoard = () => {
     }
 
     // console.log(findStatus("67d1f0f727fadbd89ec28d37"));
-    const date = new Date('2025-03-16').toISOString().split('T')[0];
-    console.log(date)
+    const date = new Date().toISOString().split('T')[0];
+    console.log("date yaha se ari ",date)
       let todayQuestion=quesDisplay.filter((ques)=>{
         const deadline = new Date(ques.deadlineByAdmin).toISOString().split('T')[0];
         return deadline === date;
@@ -73,16 +74,36 @@ export const UserDashBoard = () => {
        console.log(reminderToday)
 
     const reminders=user.reminders;
+    
+    const [search ,setSearc]=useState("")
+    const filterdQuestions= quesDisplay.filter((ques)=>
+      (ques.name.toLowerCase().includes(search) || 
+     ques.level.includes(search) ||
+     ques.deadlineByAdmin.includes(search)
+  
+  )
+
+  )|| [];
+    console.log("sare ques filter hoke",filterdQuestions)
   return (
     <section className='min-h-screen w-full p-2'>
         Hi !
         {/* sara content  */}
         <div className='p-4 w-full '>
             {/* title filter and button */}
-            <div className='flex justify-between items-center font-semibold mt-10'> 
+            <div className='flex justify-between items-center  mt-10'> 
                 <h1 className='text-3xl'>
                   Hi! {user.name}
                 </h1>
+               <div className='flex items-center w-96  gap-1'>
+                <FaSearch/>
+                <input
+                 className='border rounded w-full ' 
+                 type="text"
+                 value={search}
+                 onChange={(e)=>setSearc(e.target.value)}
+                 />
+               </div>
                 <div className='flex gap-5'>
                     <button className='px-5 py-2 rounded-lg text-white text-lg border bg-red-400 text white'>
                         filters
@@ -102,9 +123,10 @@ export const UserDashBoard = () => {
                     <h1 className='w-1/4'>Actions</h1>
                     
                 </div>
+                
                 <div className='flex flex-col mt-5 gap-2'>
                 <p className='text-center text-xl font-semibold'>
-                Today <span className='text-blue-800'>New</span> question
+                 <span className='text-blue-800'>New</span> Question's for Today
                 </p>
                          {todayQuestion.length>0?
                                todayQuestion.
@@ -142,7 +164,7 @@ export const UserDashBoard = () => {
 
                 <div className='flex flex-col mt-5 gap-2'>
                 <p className='text-center text-xl font-semibold'>
-                Today <span className='text-blue-800'>REMIDERS</span> question
+ <span className='text-blue-800'>REMIDERS</span> for today
                 </p>
                          {reminderToday.length>0?
                                reminderToday.map((ques)=>findQuesDetails(ques.question)).
@@ -178,7 +200,7 @@ export const UserDashBoard = () => {
                 All <span className='text-blue-800'></span> Questions
                 </p>
                          {
-                               quesDisplay.
+                               filterdQuestions.
                                map((question)=>(
                                       <div className='w-full pl-3 border items-center shadow-md h-auto py-4 rounded-lg flex '>
                                           <div className='w-1/2'>

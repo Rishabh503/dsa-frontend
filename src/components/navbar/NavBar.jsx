@@ -1,4 +1,4 @@
-import { BarChart, Clock, List, LogOut, Menu, Star, Users, X } from "lucide-react";
+import { BarChart, Clock, List, LogOut, LogOutIcon, Menu, Star, Users, X } from "lucide-react";
 import { useState } from "react";
 import { NavLink, useNavigate } from "react-router";
 import { useAuth } from "../../context/AuthContext";
@@ -7,7 +7,6 @@ export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const navigate=useNavigate()
 const {user}=useAuth();
-//jusy
 const handleLogout=async()=>{
   try {
     const response=await fetch(`https://dsa-backend-yr7z.onrender.com/api/v1/user/logout`,
@@ -42,7 +41,7 @@ console.log(user)
              <NavItem icon={<List size={20} />} label="Admin" />
             </NavLink>*/}
             <NavLink to={`user/${user._id}`} >
-             <NavItem icon={<List size={20} />} label="User" />
+             <NavItem icon={<List size={20} />} label="Questions" />
             </NavLink> 
             {/* <NavLink to='/add'>
             <NavItem icon={<List size={20} />} label="Ques" />
@@ -62,7 +61,7 @@ console.log(user)
      
 
          <button onClick={()=>{handleLogout()}} >
-            <NavItem icon={<LogOut size={20} />} label="Logout" />
+            <NavItem icon={<LogOutIcon size={20} />} label="Logout" />
          </button>
         </div>
 
@@ -78,11 +77,20 @@ console.log(user)
       {/* Mobile Nav */}
       {isOpen && (
         <div className="md:hidden mt-4 space-y-2">
-          <NavItem icon={<List size={20} />} label="Ques" />
-          <NavItem icon={<Clock size={20} />} label="Reminders" />
-          <NavItem icon={<Users size={20} />} label="Groups" />
-          <NavItem icon={<Star size={20} />} label="Starred Ques" />
+          <NavLink to={`user/${user._id}`} >
+             <NavItem icon={<List size={20} />} label="Questions" />
+            </NavLink>
+            <NavLink to={`user/reminder/${user._id}`}>
+                <NavItem icon={<Clock size={20} />} label="Reminders" />
+         </NavLink>
+         <NavLink to={`user/starred/${user._id}`}>
+             <NavItem icon={<Star size={20} />} label="Starred Ques" />
+         </NavLink>
+         <NavLink to={`user/progress/${user._id}`}>
+           
           <NavItem icon={<BarChart size={20} />} label="Progress" />
+         </NavLink>
+          <NavItem icon={<Users size={20} />} label="Groups" />
         </div>
       )}
     </nav>
