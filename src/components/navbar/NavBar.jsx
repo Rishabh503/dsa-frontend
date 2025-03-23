@@ -7,6 +7,7 @@ export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const navigate=useNavigate()
 const {user}=useAuth();
+//jusy
 const handleLogout=async()=>{
   try {
     const response=await fetch(`https://dsa-backend-yr7z.onrender.com/api/v1/user/logout`,
