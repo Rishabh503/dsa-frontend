@@ -7,7 +7,7 @@ export const AuthProvider = ({ children }) => {
 
   const fetchUser = async () => {
     try {
-      const res = await fetch('http://localhost:5000/api/v1/user/profile', {
+      const res = await fetch('https://dsa-backend-yr7z.onrender.com/api/v1/user/profile', {
         method: 'POST',
         credentials: 'include'
       });
@@ -21,7 +21,7 @@ export const AuthProvider = ({ children }) => {
       setUser(data.data);
     } catch (error) {
       console.error('Error fetching user:', error.message);
-      setUser(null);
+      setUser("");
     }
   };
 

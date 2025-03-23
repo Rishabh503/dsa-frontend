@@ -1,5 +1,5 @@
+import { BarChart, Clock, List, LogOut, Menu, Star, Users, X } from "lucide-react";
 import { useState } from "react";
-import { Menu, X, Star, Clock, Users, BarChart, List, LogOut } from "lucide-react";
 import { NavLink, useNavigate } from "react-router";
 import { useAuth } from "../../context/AuthContext";
 
@@ -9,7 +9,7 @@ export default function Navbar() {
 const {user}=useAuth();
 const handleLogout=async()=>{
   try {
-    const response=await fetch(`http://localhost:5000/api/v1/user/logout`,
+    const response=await fetch(`https://dsa-backend-yr7z.onrender.com/api/v1/user/logout`,
       {
         method:"POST",
         credentials: 'include'

@@ -1,4 +1,4 @@
-export const URI = "http://localhost:5000";
+export const URI = "https://dsa-backend-yr7z.onrender.com";
 export const DEVURL = `${URI}`;
 
 export const getAllQuestions = async () => {
