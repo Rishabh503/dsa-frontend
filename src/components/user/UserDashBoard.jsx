@@ -131,16 +131,43 @@ export const UserDashBoard = () => {
                          {todayQuestion.length>0?
                                todayQuestion.
                                map((question)=>(
-                                      <div className='w-full pl-3 border items-center shadow-md h-auto py-4 rounded-lg flex '>
+                                      <div className='w-full pl-3  border items-center shadow-md h-auto py-4 rounded-lg flex '>
                                           <div className='w-1/2'>
-                                            <p>{question.name}</p>
-                                            <a href={question.link} className='text-sm'>Visit</a>
+                                            <p className='text-xl font-serif'>{question.name}</p>
+                                            <a href={question.link} className='text-sm text-blue-500'>Visit</a>
                                           </div>
-                                          <h1 className='w-1/4'>{question.level}</h1>
+                                         <h1 className={`w-1/4 flex items-center`}>
+                                              <span className={`
+                                              w-24 
+                                             ${question.level=="medium"||question.level=="Medium"?"bg-[#FFCC00]":
+                                              question.level=="Easy" || question.level=="Easy"?"bg-[#90EE90]":
+                                              "bg-[#FF6347]"
+                                            
+                                            
+                                            }
+                                             px-4 py-1
+                                             rounded-md
+                                             `}>
+                                              {question.level}
+                                              </span>
+                                              
+                                              </h1>
                                           <h1 className='w-1/4'>{question.deadlineByAdmin.slice(0,10)}</h1>
                                           {/* <h1 className='w-1/4'>{question.status}</h1> */}
                                           <h1 className='w-1/4 flex items-center '>
-                                              <span >{findStatus(question._id).status}</span>
+                                          <span className={` w-32
+                                            ${findStatus(question._id).status=="pending"||findStatus(question._id).status=="Medium"?"bg-red-200":
+                                              findStatus(question._id).status=="Done" || findStatus(question._id).status=="Easy"?"bg-[#90EE90]":
+                                              findStatus(question._id).status=="Left" || findStatus(question._id).status=="Easy"?"bg-red-400":
+                                             "bg-[#FF6347]"
+                                           }
+                                           text-white font-semibold
+                                            px-4 py-1
+                                            rounded-md
+                                            `}>
+
+                                            {findStatus(question._id).status}
+                                            </span>
                                             <QuestionStatusUpdate icon={<Pen/>} questionId={question._id} userId={userId.userId}/>
                                           </h1>
                                       <div className='w-1/4 flex gap-1 text-2xl'>
@@ -174,10 +201,42 @@ export const UserDashBoard = () => {
                                             <p>{question.name}</p>
                                             <a href={question.link} className='text-sm'>Visit</a>
                                           </div>
-                                          <h1 className='w-1/4'>{question.level}</h1>
+                                          <h1 className={`w-1/4 
+                                            
+                                            `}>
+                                             
+                                             <span className={`
+                                            ${question.level=="medium"||question.level=="Medium"?"bg-[#FFCC00]":
+                                             question.level=="Easy" || question.level=="Easy"?"bg-[#90EE90]":
+                                             "bg-[#FF6347]"
+                                           
+                                           
+                                           }
+                                            px-4 py-1
+                                            rounded-md
+                                            `}>
+
+                                             {question.level}
+                                             </span>
+                                             
+                                             </h1>
                                           {/* <h1 className='w-1/4'>{question.date.slice(0,10)}</h1> */}
                                           <h1 className='w-1/4'>{reminderToday[i].date.slice(0,10)}</h1>
-                                          <h1 className='w-1/4'>{reminderToday[i].status}
+                                          <h1 className='w-1/4 flex items-center'>
+                                          <span className={` w-32
+                                            ${findStatus(question._id).status=="pending"||findStatus(question._id).status=="Medium"?"bg-red-200":
+                                              findStatus(question._id).status=="Done" || findStatus(question._id).status=="Easy"?"bg-[#90EE90]":
+                                              findStatus(question._id).status=="Left" || findStatus(question._id).status=="Easy"?"bg-red-400":
+                                             "bg-[#FF6347]"
+                                           
+                                           
+                                           }
+                                            px-4 py-1
+                                            rounded-md
+                                            `}>
+                                     {reminderToday[i].status}
+                                          </span>
+                                       
                                           <ReminderStatusUpdate icon={<Pen/>} questionId={question._id} reminderId={reminderToday[i]._id}/></h1>
                                          <h1 className='w-1/4 flex items-center'>
                                            
@@ -207,11 +266,43 @@ export const UserDashBoard = () => {
                                             <p>{question.name}</p>
                                             <a href={question.link} className='text-sm'>Visit</a>
                                           </div>
-                                          <h1 className='w-1/4'>{question.level}</h1>
+                                          <h1 className={`w-1/4 
+                                            items-center flex 
+                                            `}>
+                                             
+                                             <span className={`
+                                             w-24
+                                            ${question.level=="medium"||question.level=="Medium"?"bg-[#FFCC00]":
+                                             question.level=="Easy" || question.level=="Easy"?"bg-[#90EE90]":
+                                             "bg-[#FF6347]"
+                                           
+                                           
+                                           }
+                                            px-4 py-1
+                                            rounded-md
+                                            `}>
+
+                                             {question.level}
+                                             </span>
+                                             
+                                             </h1>
                                           <h1 className='w-1/4'>{question.deadlineByAdmin.slice(0,10)}</h1>
                                           {/* <h1 className='w-1/4'>{question.status}</h1> */}
-                                          <h1 className='w-1/4 flex items-center'>
+                                          <h1 className='w-1/4 flex ites-center '>
+                                          <span className={` w-32
+                                            ${findStatus(question._id).status=="pending"||findStatus(question._id).status=="Medium"?"bg-red-200":
+                                              findStatus(question._id).status=="Done" || findStatus(question._id).status=="Easy"?"bg-[#90EE90]":
+                                              findStatus(question._id).status=="Left" || findStatus(question._id).status=="Easy"?"bg-red-400":
+                                             "bg-[#FF6347]"
+                                           
+                                           
+                                           }
+                                            px-4 py-1
+                                            rounded-md
+                                            `}>
+
                                             {findStatus(question._id).status}
+                                            </span>
                                             <QuestionStatusUpdate icon={<Pen/>} questionId={question._id} userId={userId.userId}/>
                                           </h1>
                                       <div className='w-1/4 flex gap-1 text-2xl'>
