@@ -51,7 +51,7 @@ export const Login = () => {
     <div className='sm:p-10 w-full p-4   sm:w-1/2'>
     <div className='border sm:px-10 sm:py-4 w-full bg-gray-300  rounded-md'>
       
-     <h2 className='text-center'>Login</h2>
+     <h2 className='text-center text-xl'>Login</h2>
       <form className='flex flex-col gap-2 items-center' onSubmit={handleLogin}>
        <div className='flex p-2 flex-col '>
        <label className='pl-2' htmlFor="">Email</label>

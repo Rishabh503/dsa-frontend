@@ -116,7 +116,7 @@ export const UserDashBoard = () => {
             {/* tables view  */}
             <div className=' p-2 w-full'>
             <div className='w-full border bg-blue-200 pl-3 shadow-md h-auto py-2 rounded-lg flex '>
-                    <h1 className='w-1/2'>Question</h1>
+                    <h1 className='w-1/2 '>Question</h1>
                     <h1 className='w-1/4'>Level</h1>
                     <h1 className='w-1/4'>Deadline</h1>
                     <h1 className='w-1/4'>Status</h1>
