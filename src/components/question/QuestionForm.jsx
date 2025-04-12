@@ -33,7 +33,8 @@ export const QuestionForm = () => {
     <section className='w-full bg-gray-100 h-full min-h-screen'>
         {/* sara samana */}
         <div className='h-full w-full flex mt:16  items-center shadow-sm sm:px-64 sm:py-32'>
-            {/* isko kreegee center */}
+            {/* isko kreegee center */} 
+            {/* ixko  */}
             <div className='p-3 bg-white rounded-md mx-auto border w-[80%]'>
                 <div className='flex justify-between w-full'>
                     <h1 className='text-2xl font-semibold'>Add New Question</h1>
